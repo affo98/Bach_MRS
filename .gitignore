@@ -1,0 +1,5 @@
+.ipynb_checkpoints
+UserItemMatrix.npz
+spot_mpd
+spot_mpdc
+SongIdToIndex.p
