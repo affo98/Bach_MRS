@@ -27,9 +27,8 @@ def dataLoader():
     for i in range(0,1000000-999,1000):
         i_min, i_max = i, i+999 # 0-999, 1000-1999, 2000-2999, ...
         print(f'Loading data from {i_min} to {i_max}...')
-        playlistInterval = str(0) + '-' + str(999)
-        playlistsInInterval = json.load(open(f'../spot_mpd/data/mpd.slice.{playlistInterval}.json'))
-
+        playlistInterval = str(i_min) + '-' + str(i_max)
+        playlistsInInterval = json.load(open(f'spot_mpd/data/mpd.slice.{playlistInterval}.json'))
         for playlist in playlistsInInterval['playlists']:
             trackIds = []
             userId = playlist['pid'] # Each Playlist has a unique ID hence unique UserID
