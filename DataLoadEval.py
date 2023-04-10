@@ -15,7 +15,7 @@ def EvaluateUserItemRelation():
     playlist = matrix[rowId, :].nonzero()[1] # returns indexes of nonzero elements
     tracks = [list(songToIndex.keys())[list(songToIndex.values()).index(i)] for i in playlist]
     
-    data = json.load(open('../spot_mpd/data/mpd.slice.0-999.json'))
+    data = json.load(open('spot_mpd/data/mpd.slice.0-999.json'))
     data = np.unique([i['track_uri'].split(':')[2] for i in data['playlists'][rowId]['tracks']])
     
     for track, index in zip(tracks, playlist):
