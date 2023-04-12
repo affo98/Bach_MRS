@@ -1,8 +1,25 @@
+## Jupyter ##
 .ipynb_checkpoints
-UserItemMatrix.npz
+
+## Datasets Spotify ##
 spot_mpd
 spot_mpdc
+
+## LookupTables ## 
 SongIdToIndex.p
-.DS_Store
+albumIdToIndex.p
+artistIdToIndex.p
+getToken.py
+
+## Matrixes ## 
+UserItemMatrix.npz
+TestUserItemMatrix.npz
+TrainUserItemMatrix.npz
+ValidationUserItemMatrix.npz
+
+## Models ## 
 model.p
 
+
+## Mac ## 
+.DS_Store
