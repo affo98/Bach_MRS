@@ -20,11 +20,8 @@ def getTrackFeatures(header):
         tracks = ','.join(tracks)
         
         # Get the track features for a track
-        track = requests.get(f'https://api.spotify.com/v1/tracks?ids={tracks}', headers=header)
-        print(track.status_code,track.raise_for_status()) 
-        #     track = track.json()
-        trackAF = requests.get(f'https://api.spotify.com/v1/audio-features?ids={tracks}', headers=header)
-        print(trackAF.status_code,trackAF.raise_for_status())
+        track = requests.get(f'https://api.spotify.com/v1/tracks?ids={tracks}', headers=header).json()
+        trackAF = requests.get(f'https://api.spotify.com/v1/audio-features?ids={tracks}', headers=header).json()
         for i in range(len(track['tracks'])): # 0-49, 50-99, 100-149, 150-199
             trackFeatures = [] # 16 features
             if track['tracks'][i] is None:
@@ -60,7 +57,7 @@ def getTrackFeatures(header):
             trackFeatures.append(trackAF['audio_features'][i]['time_signature'])
             # Append the features to the matrix indexed by 0,50,100,150 + i in range 0-50, 50-100...
             itemFeatures[intStart+i] = trackFeatures
-        time.sleep(0.5) # Sleep to avoid rate limit
+        time.sleep(1) # Sleep to avoid rate limit
     with open('itemFeatures.npy', 'wb') as f:
         np.save(f, itemFeatures)
     return True
