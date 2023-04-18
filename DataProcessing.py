@@ -21,7 +21,7 @@ def dataLoader():
     songIdToIndex = {} # Dictionary to map song IDs to matrix indices
     albumIdToIndex = {} # Dictionary to map album IDs to assign numeric values to ids
     artistIdToIndex = {} # Dictionary to map artist IDs to assign numeric values to ids
-
+    songIndexToId = {} # Dictionary to map song Matrix indices to IDs
     # Create empty matrix trainMatrix
     matrixTrain = sp.lil_matrix((numUsers, numTracks), dtype=np.int8) 
     matrixValid = sp.lil_matrix((numUsers, numTracks), dtype=np.int8)
@@ -39,6 +39,7 @@ def dataLoader():
             trackIds = []
             userId = playlist['pid'] # Each Playlist has a unique ID hence unique UserID
             for track in playlist['tracks']: # Each Playlist has a list of tracks
+                trackLookUp = {k: v for k, v in track.items() if k != "pos"}
                 trackId = track['track_uri'].split(':')[2] # Each track has a unique ID
                 albumId = track['album_uri'].split(':')[2] # Each album has a unique ID
                 artistId = track['artist_uri'].split(':')[2] # Each artist has a unique ID
@@ -46,7 +47,7 @@ def dataLoader():
                 if trackId not in songIdToIndex: # Map each track ID to a unique index to build the matrix
                 # Assign a new index to the song ID if it has not been encountered before
                     songIdToIndex[trackId] = len(songIdToIndex)
-                
+                    songIndexToId[len(songIndexToId)] = trackLookUp
                 if albumId not in albumIdToIndex: 
                     albumIdToIndex[albumId] = len(albumIdToIndex)
                 if artistId not in artistIdToIndex:
@@ -72,7 +73,8 @@ def dataLoader():
     # Save the songIdToIndex dictionary as a pickle file
     pickle.dump(songIdToIndex, open( "SongIdToIndex.p", "wb" ))
     pickle.dump(albumIdToIndex, open( "albumIdToIndex.p", "wb" ))
-    pickle.dump(artistIdToIndex, open( "artist IdToIndex.p", "wb" ))
+    pickle.dump(artistIdToIndex, open( "artistIdToIndex.p", "wb" ))
+    pickle.dump(songIndexToId, open( "songIndexToId.p", "wb" ))
     return True
 
 def main():
