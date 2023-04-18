@@ -9,6 +9,10 @@ spot_mpdc
 SongIdToIndex.p
 albumIdToIndex.p
 artistIdToIndex.p
+SongIndexToId.p
+
+
+## Other
 getToken.py
 
 ## Matrixes ## 
