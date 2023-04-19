@@ -11,6 +11,8 @@ albumIdToIndex.p
 artistIdToIndex.p
 SongIndexToId.p
 
+#Directories
+dataSubsets
 
 ## Other
 getToken.py
