@@ -15,13 +15,19 @@ def getTrackFeatures(header):
 
     for trackInterval in range(0,len(SongIdToIndex),50): # The values are sorted by the definition of this specific dictionary, this exploited to construct the matrix directly
         intStart, intEnd = trackInterval, trackInterval+50
-        print(intStart, intEnd)
+        
+        if trackInterval % 1000 == 0:
+            print(intStart, intEnd)
         tracks = list(SongIdToIndex.keys())[intStart:intEnd]
         tracks = ','.join(tracks)
         
         # Get the track features for a track
-        track = requests.get(f'https://api.spotify.com/v1/tracks?ids={tracks}', headers=header).json()
-        trackAF = requests.get(f'https://api.spotify.com/v1/audio-features?ids={tracks}', headers=header).json()
+        track = requests.get(f'https://api.spotify.com/v1/tracks?ids={tracks}', headers=header)
+        print(track.headers, '\n'*2)
+        track = track.json()
+        trackAF = requests.get(f'https://api.spotify.com/v1/audio-features?ids={tracks}', headers=header)
+        print(trackAF.headers)
+        trackAF = trackAF.json()
         for i in range(len(track['tracks'])): # 0-49, 50-99, 100-149, 150-199
             trackFeatures = [] # 16 features
             if track['tracks'][i] is None:
