@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # List of subset sizes
-subsetSizes=(5000 10000)
+subsetSizes=(5000 10000 50000 100000 500000)
 
 # Number of iterations and features
 numIterations=1000

@@ -9,10 +9,11 @@ subsetSize = int(sys.argv[1])
 ratings = pd.read_csv('dataSubsets/AllData'+str(subsetSize)+'.csv')
 
 #Load model
-modelPath = sys.argv[2]
-modelName = modelPath.split('/')[-1].split('.')[0]
-model = pickle.load(open(modelPath, 'rb'))
-
+model = sys.argv[2]
+modelName = model + str(subsetSize)
+print(modelName)
+model = pickle.load(open(f'LKMFModels/{modelName}.pkl', 'rb'))
+print(model)
 numberOfRecommendations = int(sys.argv[3])
 
 
@@ -25,4 +26,5 @@ for user in ratings['user'].unique():
 RecsImpMF = pd.concat(recommendations,keys=recommendations.keys())
 RecsImpMF = RecsImpMF.reset_index(level=1, drop=True).reset_index()
 RecsImpMF.rename(columns={'index':'user'}, inplace=True)
-RecsImpMF.to_csv(f'LKMFRecs/{modelName}'+str(subsetSize)+'.csv', index=False)
+RecsImpMF.to_csv(f'LKMFRecs/{modelName}.csv', index=False)
+print(f"Saved recommendations to LKMFRecs/{modelName}.csv")
