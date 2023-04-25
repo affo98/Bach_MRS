@@ -70,7 +70,7 @@ def getTrackFeatures(header):
                 trackFeatures.append(-1)
                 trackFeatures.append(-1)
                 trackFeatures.append(-1)
-            else:
+            else:  
                 try:
                     trackFeatures.append(albumIdToIndex[track['tracks'][i]['album']['id']])
                 except:

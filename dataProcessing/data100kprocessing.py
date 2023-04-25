@@ -95,15 +95,15 @@ def get100000Users():
         newUsers100k[index, newUserTrack100kStructure[user]] = 1
 
     # save the 100000x(number of songs per user * 100000) matrix
-    sp.save_npz('../data/data100000/train100k.npz', train100k.tocsr())
-    sp.save_npz('../data/data100000/validation100k.npz', validation100k.tocsr())
-    sp.save_npz('../data/data100000/test100k.npz', test100k.tocsr())
-    sp.save_npz('../data/data100000/newUsers100k.npz', newUsers100k.tocsr())
+    sp.save_npz('../data/data100k/train100k.npz', train100k.tocsr())
+    sp.save_npz('../data/data100k/validation100k.npz', validation100k.tocsr())
+    sp.save_npz('../data/data100k/test100k.npz', test100k.tocsr())
+    sp.save_npz('../data/data100k/newUsers100k.npz', newUsers100k.tocsr())
 
     # save the songIndexToID100k dictionary
-    pickle.dump(songIndexToID100k, open('../data/data100000/songIndexToID100k.pkl', 'wb'))
-    pickle.dump(newUserTracksIndexToID100k, open('../data/data100000/songIndexToID100knewUser.pkl', 'wb'))
-
+    pickle.dump(songIndexToID100k, open('../data/data100k/songIndexToID100k.pkl', 'wb'))
+    pickle.dump(newUserTracksIndexToID100k, open('../data/data100k/songIndexToID100knewUser.pkl', 'wb'))
+    pickle.dump(songIndexToID, open('../data/songIndexToId.p', 'wb'))
     return 'Done'
 
-print(get100000Users())
+get100000Users()
