@@ -16,6 +16,8 @@ SongIndexToId.p
 dataSubsets
 LKMFModels
 LKMFrecs
+data
+progress
 
 ## Other
 getToken.py
