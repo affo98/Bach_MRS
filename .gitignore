@@ -18,6 +18,7 @@ LKMFModels
 LKMFrecs
 data
 progress
+recBoles
 
 ## Other
 getToken.py
