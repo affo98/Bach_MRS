@@ -32,8 +32,8 @@ def convertnp_csv(input_file, output_file):
 input_files = ['../data/data100k/train100k.npz', '../data/data100k/test100k.npz', '../data/data100k/validation100k.npz', '../data/data100k/newUsers100k.npz']
 output_files = ['../recBole/train100k.csv', '../recBole/test100k.csv', '../recBole/validation100k.csv', '../recBole/newUsers100k.csv']
 
-#for input_file, output_file in zip(input_files, output_files):
-   # convertsp_csv(input_file, output_file)
+for input_file, output_file in zip(input_files, output_files):
+    convertsp_csv(input_file, output_file)
 
 input_dicts = ['../data/data100k/songIndexToID100k.pkl', '../data/data100k/songIndexToID100knewUser.pkl']
 output_dicts = ['../recBole/items100k.csv', '../recBole/itemsNewUsers.csv']

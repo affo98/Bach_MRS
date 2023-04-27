@@ -11,5 +11,5 @@ numFeatures=10
 for subsetSize in "${subsetSizes[@]}"
 do
     # Run Python script with arguments
-    python lkpyMF.py $subsetSize $numIterations $numFeatures
+    python ../models/lkpyMF.py $subsetSize $numIterations $numFeatures
 done

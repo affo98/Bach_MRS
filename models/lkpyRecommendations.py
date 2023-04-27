@@ -5,16 +5,16 @@ import pandas as pd
 
 # Load data
 # Data manipulation
-subsetSize = int(sys.argv[1])
-ratings = pd.read_csv('dataSubsets/AllData'+str(subsetSize)+'.csv')
+#subsetSize = int(sys.argv[1])
+ratings = pd.read_csv('recBole/datasets/train100k.csv')
 
 #Load model
-model = sys.argv[2]
-modelName = model + str(subsetSize)
+model = sys.argv[1]
+modelName = model + '100k'
 print(modelName)
 model = pickle.load(open(f'LKMFModels/{modelName}.pkl', 'rb'))
 print(model)
-numberOfRecommendations = int(sys.argv[3])
+numberOfRecommendations = int(sys.argv[2])
 
 
 # Run through all users to get recommendations
