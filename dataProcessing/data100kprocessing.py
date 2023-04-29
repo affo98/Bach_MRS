@@ -21,13 +21,13 @@ def get100000Users():
     numberOfUsers = UserItemMatrix.shape[0]
     # get 100000 random users
     randomUsers100k = random.sample(range(0,numberOfUsers), 250000) # add extra users for validation & test, and buffer for no interactions
-    newRandomUsers100k = []
-    while len(newRandomUsers100k) < 12000:
-        randomPlaylist = random.randint(0,numberOfUsers)
-        if randomPlaylist not in randomUsers100k:
-            newRandomUsers100k.append(randomPlaylist)
-        else:
-            continue
+    # newRandomUsers100k = []
+    # while len(newRandomUsers100k) < 12000:
+    #     randomPlaylist = random.randint(0,numberOfUsers)
+    #     if randomPlaylist not in randomUsers100k:
+    #         newRandomUsers100k.append(randomPlaylist)
+    #     else:
+    #         continue
 
     # randomUsers Now a list:
     # We only want to get 100000 random users that have interactions i.e. songs in their playlists
@@ -50,7 +50,7 @@ def get100000Users():
                     songIndexToID100k[track] = len(songIndexToID100k) # key= OG index, value = new index
                     songIndexToID[track]['100kIndex'] = songIndexToID100k[track] # minus one, since we already added one
                 userTrack100kStructure[user].append(songIndexToID[track]['100kIndex']) # add the track to the user's playlist with the new index
-        if len(userTrack100kStructure) == 100000:
+        if len(userTrack100kStructure) == 99999:
             break
 
 

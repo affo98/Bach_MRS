@@ -40,14 +40,14 @@ ratings = pd.read_csv('../recBole/datasets/train100k.csv')
 
 ## Fit each of the models on the data and recommened 10 items to each user for each model
 ImpMF.fit(ratings) # Fit The model
-pickle.dump(ImpMF, open('LKMFModels/ImpMF100k.pkl','wb')) # Save the model
+pickle.dump(ImpMF, open('../LKMFModels/ImpMF100k.pkl','wb')) # Save the model
 
 SVDBiased.fit(ratings)
-pickle.dump(SVDBiased, open('LKMFModels/SVDBiased100k.pkl','wb'))
+pickle.dump(SVDBiased, open('../LKMFModels/SVDBiased100k.pkl','wb'))
 
 SVDfunk.fit(ratings)
-pickle.dump(SVDfunk, open('LKMFModels/SVDfunk100k.pkl','wb'))
+pickle.dump(SVDfunk, open('../LKMFModels/SVDfunk100k.pkl','wb'))
 
 popular.fit(ratings)
-pickle.dump(popular, open('LKMFModels/popular100k.pkl','wb'))
+pickle.dump(popular, open('../LKMFModels/popular100k.pkl','wb'))
 
