@@ -24,6 +24,7 @@ The code is structured with three main folders: "general", "recBole", "lenskit".
 filtering and visualisations, whereas the folder recBole and Lenskit are the implemented models utilised in this project.
 
 Findings and performance of the models:
+![heatmap](https://github.com/affo98/Bach_MRS/assets/90624056/04160943-5188-41b0-85a1-786dfe0cfe1d)
 
 
 
