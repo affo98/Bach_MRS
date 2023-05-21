@@ -1,6 +1,8 @@
 model: SGL
 dataset: mpd-100k
 data_path: ../dataset/
+save_dataset: True
+save_dataloaders: True
 
 field_separator: "\t"
 field_type:
@@ -9,17 +11,26 @@ field_type:
   rating: float
   load_col: 
     inter: [user_id, item_id, rating]
+    item: [tem_id, popularity, track_number, danceability, energy, key, loudness, mode, speechiness, acousticness, instrumentalness, liveness, valence, tempo, duration_ms]
 eval_setting: RO_RS
 
+# Training Hyper Parameters
 epochs: 100
 train_batch_size: 10000
-eval_step : 1
+eval_step : 10 # evaluate the model every 1 epoch
 hyper_parameters:
   learning_rate: 0.001
   weight_decay: 0.01
   embed_size: 32
   negative_num: 1
-  early_stopping: 10
+
+# Tuning Hyper Parameters
+eval_args:
+  split: 
+    RS: [0.7, 0.15, 0.15]
+  eval_batch_size: 20000
+  eval_setting: RO_RS
+  mode: pop100
 
 # Hyperparameter Tuning method
 tune_args:
@@ -41,22 +52,24 @@ eval_args:
 
 # Evaluation Metrics
 valid_metric: GiniIndex@10
-valid_metric_bigger: True
+valid_metric_smaller: True
 metrics: ['Recall', 'GiniIndex', 'NDCG', 'Hit', 'Precision', 'ItemCoverage']
 metrics_weight:
-  Recall: 0.04 # Accuracy Metric
-  Precision: 0.04 # Accuracy Metric
-  NDCG: 0.02 # Accuracy Metric
-  Hit: 0.1 # Accuracy Metric
-  ItemCoverage: 0.1 # Diversity Metric
-  GiniIndex: 0.5 # Diversity Metric
+  Recall: 0.01 # Accuracy Metric
+  Precision: 0.01 # Accuracy Metric
+  NDCG: 0.01 # Accuracy Metric
+  Hit: 0.01 # Accuracy Metric
+  ItemCoverage: 0.26 # Diversity Metric
+  GiniIndex: 0.7 # Diversity Metric
 early_stopping: # Early Stopping on Diversity Metric
   early_stop: True
   early_stop_valid: True
   early_stop_min_delta: 0.001 # minimum change in the monitored quantity to qualify as an improvement
   early_stop_patience: 2 # Number of epochs to elapse before stopping the training
-  valid_metric: GiniIndex
+  valid_metric: GiniIndex@10
   valid_metric_smaller: True  
-eval_batch_size: 2000
+
 #Other Hyper Parameters
-eval_setting : RO_RS
+worker : 0
+device: cuda # MPS to accelerate training
+topk : 10
