@@ -23,7 +23,8 @@ user item relationship with its non-linearity and item-features."
 The code is structured with three main folders: "general", "recBole", "lenskit". The General folder is comprised of all data processing,
 filtering and visualisations, whereas the folder recBole and Lenskit are the implemented models utilised in this project.
 
-Findings:
-![image](https://github.com/affo98/Bach_MRS/heatmap.png)
+Findings and performance of the models:
+
+
 
 
