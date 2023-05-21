@@ -12,5 +12,5 @@ for model in "${models[@]}"
 do
     echo "Model: $model"
     # Run Python script with arguments
-    python ../models/lkpyRecommendations.py $model $numRecs
+    python ../lkpyRecommendations.py $model $numRecs
 done

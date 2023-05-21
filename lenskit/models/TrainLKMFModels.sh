@@ -4,8 +4,8 @@
 subsetSizes=(5000 10000 50000 100000 500000)
 
 # Number of iterations and features
-numIterations=1000
-numFeatures=10
+numIterations=100
+numFeatures=32
 
 # Iterate over subset sizes
 for subsetSize in "${subsetSizes[@]}"

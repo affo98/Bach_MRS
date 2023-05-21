@@ -1,0 +1,51 @@
+model: BPR
+dataset: mpd-100k
+data_path: ../dataset/
+save_dataset: True
+save_dataloaders: True
+
+field_separator: "\t"
+field_type:
+  user_id: token
+  item_id: token
+  rating: float
+
+# Training Hyper Parameters
+epochs: 100
+train_batch_size: 10000
+eval_step : 20 # evaluate the model every 1 epoch
+hyper_parameters:
+  learning_rate: 0.001
+  embed_size: 32
+
+# Tuning Hyper Parameters
+eval_args:
+  split: 
+    RS: [0.7, 0.15, 0.15]
+  eval_batch_size: 20000
+  eval_setting: RO_RS
+  mode: pop100
+  
+valid_metric: GiniIndex@10
+valid_metric_bigger: True
+metrics: ['Recall', 'GiniIndex', 'NDCG', 'Hit', 'Precision', 'ItemCoverage']
+metrics_weight:
+  Recall: 0.04 # Accuracy Metric
+  Precision: 0.04 # Accuracy Metric
+  NDCG: 0.02 # Accuracy Metric
+  Hit: 0.1 # Accuracy Metric
+  ItemCoverage: 0.1 # Diversity Metric
+  GiniIndex: 0.5 # Diversity Metric
+early_stopping: # Early Stopping on Diversity Metric
+  early_stop: True
+  early_stop_valid: True
+  early_stop_min_delta: 0.001 # minimum change in the monitored quantity to qualify as an improvement
+  early_stop_patience: 2 # Number of epochs to elapse before stopping the training
+  valid_metric: GiniIndex
+  valid_metric_smaller: True  
+
+#Other Hyper Parameters
+worker : 0
+eval_setting : PN # Positve Negative Sampling
+device: cuda # MPS to accelerate training
+

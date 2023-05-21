@@ -1,0 +1,62 @@
+model: SGL
+dataset: mpd-100k
+data_path: ../dataset/
+
+field_separator: "\t"
+field_type:
+  user_id: token
+  item_id: token
+  rating: float
+  load_col: 
+    inter: [user_id, item_id, rating]
+eval_setting: RO_RS
+
+epochs: 100
+train_batch_size: 10000
+eval_step : 1
+hyper_parameters:
+  learning_rate: 0.001
+  weight_decay: 0.01
+  embed_size: 32
+  negative_num: 1
+  early_stopping: 10
+
+# Hyperparameter Tuning method
+tune_args:
+  method: bayesian
+  n_trials: 10
+  n_jobs: 2
+  n_random_starts: 2
+  pruner:
+    type: none
+  sampler:
+    type: tpe
+  early_stop:
+    type: none
+
+# Model Split
+eval_args:
+  split: 
+    RS: [0.7, 0.15, 0.15]
+
+# Evaluation Metrics
+valid_metric: GiniIndex@10
+valid_metric_bigger: True
+metrics: ['Recall', 'GiniIndex', 'NDCG', 'Hit', 'Precision', 'ItemCoverage']
+metrics_weight:
+  Recall: 0.04 # Accuracy Metric
+  Precision: 0.04 # Accuracy Metric
+  NDCG: 0.02 # Accuracy Metric
+  Hit: 0.1 # Accuracy Metric
+  ItemCoverage: 0.1 # Diversity Metric
+  GiniIndex: 0.5 # Diversity Metric
+early_stopping: # Early Stopping on Diversity Metric
+  early_stop: True
+  early_stop_valid: True
+  early_stop_min_delta: 0.001 # minimum change in the monitored quantity to qualify as an improvement
+  early_stop_patience: 2 # Number of epochs to elapse before stopping the training
+  valid_metric: GiniIndex
+  valid_metric_smaller: True  
+eval_batch_size: 2000
+#Other Hyper Parameters
+eval_setting : RO_RS

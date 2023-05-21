@@ -3,8 +3,8 @@
 __pycache__
 
 ## Datasets Spotify ##
-spot_mpd
-spot_mpdc
+general/spot_mpd
+general/spot_mpdc
 
 ## LookupTables ## 
 SongIdToIndex.p
@@ -13,12 +13,11 @@ artistIdToIndex.p
 SongIndexToId.p
 
 #Directories
-dataSubsets
-LKMFModels
-LKMFrecs
-data
-progress
-recBole
+general/data
+lenskit/recs
+recBole/dataset
+recBole/results
+recBole/recs
 
 ## Other
 getToken.py
